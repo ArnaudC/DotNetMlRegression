@@ -1,0 +1,46 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Remove="data\productSugar-train.csv~RF22d8205e.TMP"/>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PartialClassGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PartialClassGenerator.tt</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ML" Version="0.3.0"/>
+    <!-- <PackageReference Include="Microsoft.ML.LightGBM" Version="0.4.0"/>
+    <PackageReference Include="Microsoft.ML.Onnx" Version="0.4.0"/> -->
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="data\productSugar-test.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\productSugar-train.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="PartialClassGenerator.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PartialClassGenerator.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349b6-6b84-4df5-91f0-309beebad82d}"/>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="PartialClassGenerator.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>PartialClassGenerator.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+</Project>
